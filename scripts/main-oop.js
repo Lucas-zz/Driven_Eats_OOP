@@ -8,10 +8,10 @@ class Produto {
     }
 
     criaDisplay() {
-        const criaElemento = document.createElement("div");
-        criaElemento.classList.add("opcao");
-        criaElemento.addEventListener("click", this.selecionar.bind(this));
-        criaElemento.innerHTML = `
+        const criaOpcao = document.createElement("div");
+        criaOpcao.classList.add("opcao");
+        criaOpcao.addEventListener("click", this.selecionar.bind(this));
+        criaOpcao.innerHTML = `
         <img src="${this.imagem}" />
         <div class="titulo">${this.nome}</div>
         <div class="descricao">${this.descricao}</div>
@@ -22,14 +22,14 @@ class Produto {
             </div>
         </div>
     `;
-        this.criaElemento = criaElemento;
+        this.criaOpcao = criaOpcao;
     }
 
     selecionar() {
         const selecionado = document.querySelector(`.${this.tipo} .selecionado`);
         if (selecionado !== null) selecionado.classList.remove("selecionado");
 
-        this.criaElemento.classList.add("selecionado");
+        this.criaOpcao.classList.add("selecionado");
 
         pedido[this.tipo] = {
             nome: this.nome,
@@ -172,21 +172,21 @@ const pratosContainer = document.querySelector(".opcoes.prato");
 pratos.forEach((prato) => {
     const produto = new Produto(prato, "prato");
     produto.criaDisplay();
-    pratosContainer.appendChild(produto.criaElemento);
+    pratosContainer.appendChild(produto.criaOpcao);
 });
 
 const bebidasContainer = document.querySelector(".opcoes.bebida");
 bebidas.forEach((bebida) => {
     const produto = new Produto(bebida, "bebida");
     produto.criaDisplay();
-    bebidasContainer.appendChild(produto.criaElemento);
+    bebidasContainer.appendChild(produto.criaOpcao);
 });
 
 const sobremesasContainer = document.querySelector(".opcoes.sobremesa");
 sobremesas.forEach((sobremesa) => {
     const produto = new Produto(sobremesa, "sobremesa");
     produto.criaDisplay();
-    sobremesasContainer.appendChild(produto.criaElemento);
+    sobremesasContainer.appendChild(produto.criaOpcao);
 });
 
 btnConfirmar.addEventListener("click", () => {
